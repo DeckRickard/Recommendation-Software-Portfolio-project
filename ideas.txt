@@ -1,0 +1,38 @@
+- Tourist attractions in Istanbul recommendations.
+
+- NICE TO HAVE - ability to search by activity tag, type of place, or location.
+
+- Requires a dataset with each activity having multiple dataypes. use a dictionary. Keys could be 'location', 'tags', 'type'
+
+- NICE TO HAVE - ability to filter down the searched list. E.g: search for a particular locations, then certain tags within that location. This would require the software to create a new, filtered list that could then be searched again.
+
+Program set-up:
+
+1. Welcome the user.
+
+2. Ask the user what category they want to search.
+
+3. Ask the user for their search term. Return all possible results for that category.
+
+4. User chooses a tag from that list by typing a number.
+
+5. The program shows a list of results for that tag.
+
+6. The program asks the user if they want to exit, start a new search, or filter their current list further.
+
+7. Repeat the above steps depending on the user's choice.
+
+
+Requirements:
+
+- Set up data-structure: provide a separate file containing the data the program will search. Each piece of data will be a dictionary with the key being the name of the attraction and the value being a nested dictionary with values for location, tags (a list or tuple), and type.
+
+- The main program will require two primary methods:
+	- A method that handles user input and selection of search queries.
+	- A method that conducts the search and returns the searched list (as a new list so that it can be searched again.)
+
+- Secondary methods:
+	- A welcome method to print a welcome message.
+	- A method to handle if the user wants to continue or exit the program. 
+
+
