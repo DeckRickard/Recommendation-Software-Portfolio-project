@@ -26,7 +26,7 @@ def print_data(data_type):
 
 def choose_category(category_list):
     choice = int(input("Please choose a category by inputting the number associated with it: "))
-    if choice > len(category_list) or choice < 0:
+    if choice > len(category_list) or choice <= 0:
         print(f"Invalid choice. Please enter a number between 1 and {len(category_list)}.")
         choose_category(category_list)
     else:
