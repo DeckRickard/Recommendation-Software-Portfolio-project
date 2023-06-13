@@ -1,4 +1,5 @@
 from locations import locations
+from alphabetise import alphabetise
 
 # Initial variable declarations. This should allow the program to be more dynamic.
 city = "Istanbul"
@@ -19,6 +20,13 @@ def autocomplete():
 def search():
     pass
 
+# This helper function creates a dictionary that contains an alphabetised dictionary for each category. This will help with autocompletion and the retrieval of results.
+def create_alphabetised_categories(categories):
+    alphabetised_categories = {}
+    for category in categories:
+        alphabetised_categories[category] = alphabetise(category, locations)
+    return alphabetised_categories
+
 # Helper function to list the choices that are available to the user in a certain category.
 def print_data(data_type):
     for i in range(0, len(data_type)):
@@ -34,4 +42,3 @@ def choose_category(category_list):
         return category_list[choice - 1]
 
 welcome()
-
