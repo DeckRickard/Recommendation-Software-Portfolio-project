@@ -13,9 +13,19 @@ def welcome():
     print("First things first, let's choose a category to search. The available categories are: ")
     print_data(categories)
     category = choose_category(categories)
+    category_alphabetised = alphabetise(category, locations)
+    see_options = input("Would you like to see a list of all available options in this category? Y/N")
+    if see_options[0].lower() == 'y':
+        show_options(category_alphabetised)
 
 def autocomplete():
     pass
+
+# Prints a list of all the options available to the user in a certain category. When refactoring - add a sort to make this list alphabetic.
+def show_options(alphabetised_dict):
+    for lst in list(alphabetised_dict.values()):
+        for item in lst:
+            print(f"-{item}")
 
 def search():
     pass
