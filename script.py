@@ -15,11 +15,32 @@ def welcome():
     category = choose_category(categories)
     category_alphabetised = alphabetise(category, locations)
     see_options = input("Would you like to see a list of all available options in this category? Y/N")
+    # This needs refactoring. Will throw an error if the user just presses enter on this option.
     if see_options[0].lower() == 'y':
         show_options(category_alphabetised)
+    search_term = input("Please enter a search term to choose a category. Enter a character to see all options beginning with that letter or enter a term to find matching results: ")
+    autocomplete(search_term, category_alphabetised)
 
-def autocomplete():
-    pass
+def autocomplete(search, category):
+    # The autocomplete executed will vary depending on whether one character is inputted or not.
+    if len(search) == 1:
+        print_results(category[search])
+    else:
+        search_results = []
+        for lst in list(category.values()):
+            for item in lst:
+                if search in item:
+                  search_results.append(item)
+        if len(search_results) == 0:
+            print("No matches found!")
+        else:
+            print_results(search_results)
+
+# Helper function for printing results in a cleaner way.
+def print_results(results):
+    for item in results:
+        print(f"- {item}.")
+
 
 # Prints a list of all the options available to the user in a certain category. When refactoring - add a sort to make this list alphabetic.
 def show_options(alphabetised_dict):
