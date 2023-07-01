@@ -20,24 +20,39 @@ def welcome():
         show_options(category_alphabetised)
     search_term = input("Please enter a search term to choose a category. Enter a character to see all options beginning with that letter or enter a term to find matching results: ")
     autocomplete(search_term, category_alphabetised)
+    
 
+# This function is used to autocomplete search results and return the search term the user wants to use.
 def autocomplete(search, category):
     # The autocomplete executed will vary depending on whether one character is inputted or not.
     if len(search) == 1:
-        print_results(category[search])
+        search_results = category[search.upper()]
     else:
         search_results = []
         for lst in list(category.values()):
             for item in lst:
                 if search in item:
                   search_results.append(item)
-        if len(search_results) == 0:
-            print("No matches found!")
-        else:
-            print_results(search_results)
+    if len(search_results) == 0:
+        print("No matches found!")
+    else:
+        print_data(search_results)
+    if len(search_results) > 1:
+        choice_index = int(input("Please choose a search term from the list of results by entering it's number."))
+        while choice_index > len(search_results) or choice_index < 0:
+            choice_index = int(input("Invalid choice. Please select a number matching one of the options above."))
+        choice = search_results[choice_index - 1]
+    else:
+        choice = search_results[0]
+    print(f"You have chosen: {choice}")
+    choice_correct = input("Is this correct? Y/N")
+    if choice_correct[0].lower() == 'y':
+        return choice
+    else:
+        autocomplete(search, category)
 
 # Helper function for printing results in a cleaner way.
-def print_results(results):
+def print_data(results):
     for item in results:
         print(f"- {item}.")
 

@@ -1,47 +1,47 @@
 locations = {
     "Topkapi Palace": 
-    {"type": "attraction",
+    {"type": "Attraction",
       "location": "Fatih",
-      "tags": ("history", "museum", "palace", "ottoman")
+      "tags": ("History", "Museum", "Palace", "Ottoman")
       },
     "Hagia Sophia":
-    {"type": "attraction",
+    {"type": "Attraction",
      "location": "Fatih",
-     "tags": ("history", "byzantine", "ottoman", "museum", "religion")
+     "tags": ("History", "Byzantine", "Ottoman", "Museum", "Religion")
      },
      "Blue Mosque":
-    {"type": "attraction",
+    {"type": "Attraction",
      "location": "Fatih",
-     "tags": ("history", "ottoman", "museum", "religion")
+     "tags": ("History", "Ottoman", "Museum", "Religion")
      },
      "Grand Bazaar":
-    {"type": "market",
+    {"type": "Market",
      "location": "Fatih",
-     "tags": ("shopping", "history", "ottoman")
+     "tags": ("Shopping", "History", "Ottoman")
      },
      "1453 Panorama History Museum":
-    {"type": "attraction",
+    {"type": "Attraction",
      "location": "Zeytinburnu",
-     "tags": ("history", "ruins", "ottoman")
+     "tags": ("History", "Ruins", "Ottoman")
      },
      "Galata Tower":
-    {"type": "attraction",
+    {"type": "Attraction",
      "location": "Beyoglu",
-     "tags": ("history", "view", "ottoman", "popular")
+     "tags": ("History", "View", "Ottoman", "Popular")
      },
      "Maiden's Tower":
-    {"type": "attraction",
+    {"type": "Attraction",
      "location": "Uskudar",
-     "tags": ("history", "view", "ottoman", "popular")
+     "tags": ("History", "View", "Ottoman", "Popular")
      },
      "Ciya Sofrasi":
-    {"type": "food",
+    {"type": "Food",
      "location": "Kadikoy",
-     "tags": ("dinner", "turkish", "traditional")
+     "tags": ("Dinner", "Turkish", "Traditional")
      },
     "Hafiz Mustafa 1864":
     {"type": "food",
      "location": "Fatih",
-     "tags": ("dessert", "turkish", "traditional", "ottoman")
+     "tags": ("Dessert", "Turkish", "Traditional", "Ottoman")
      },
 }
