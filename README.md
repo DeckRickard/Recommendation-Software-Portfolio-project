@@ -1,0 +1,7 @@
+# Recommendation-Software-Portfolio-project
+This project tested my skills in searching and uses various data-types such as HashMaps. 
+I decided to create a recommendation software that would recommend places to visit in Istanbul (or another city) based on a user chosing options in a number of categories. This is fairly similar to Codecademy's example project, but I decided to let the user choose from a number of different categories to search. In my program these are: type, location, and tags.
+The code thus needed logic for choosing categories, showing the options in a category, suggesting choices to the user based on a search, and then returning all of the options that match a particular search criteria.
+The most complicated part of the process was probably creating the autocomplete function that saw the user choosing a search query from the pre-determined list based on category.
+In order to make the actual searching as efficient as possible, I decided to create a dictionary that would assign possible choices to their various starting letters. This didn't work very well, though, as it didn't actually alphabetise the results. In the end I changed the alphabetisation function to use a HashMap, which would give the various results a hash value that matched its correct alphabetical position.
+If I were to expand this project I would expand the list of locations that the program searches. I would also like to add an option for the user to search for a location by name, rather than having to use the tags.
