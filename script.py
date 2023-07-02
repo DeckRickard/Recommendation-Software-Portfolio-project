@@ -25,15 +25,16 @@ def welcome():
 def autocomplete(search, category):
     # The autocomplete executed will vary depending on whether one character is inputted or not.
     if len(search) == 1:
-        search_results = category[search.upper()]
+        search_results = category.retrieve(search.upper())
     else:
         search_results = []
-        for lst in list(category.values()):
+        for lst in category.array:
             for item in lst:
-                if search in item:
+                if search in item.lower():
                   search_results.append(item)
     if len(search_results) == 0:
         print("No matches found!")
+        autocomplete(search, category)
     else:
         print_data(search_results)
     if len(search_results) > 1:
@@ -44,7 +45,7 @@ def autocomplete(search, category):
     else:
         choice = search_results[0]
     print(f"You have chosen: {choice}")
-    choice_correct = input("Is this correct? Y/N")
+    choice_correct = input("Is this correct? Y/N: ")
     if yes_no(choice_correct):
         return choice
     else:
@@ -67,9 +68,10 @@ def yes_no(input):
 
 # Prints a list of all the options available to the user in a certain category. When refactoring - add a sort to make this list alphabetic.
 def show_options(alphabetised_dict):
-    for lst in list(alphabetised_dict.values()):
+    for lst in alphabetised_dict.array:
         for item in lst:
-            print(f"-{item}")
+            if len(item) > 0:
+                print(f"-{item}")
 
 # As the search term is already chosen by this point, the search just needs to return a list of locations that have a matching value in the chosen category.
 def search(search_term, category):
@@ -85,7 +87,7 @@ def search(search_term, category):
     if len(results) == 0:
         print("No results found!")
     else:
-        print("\n")
+        print("Results: \n")
         for item in results:
             print(f"- {item}\n")
 
@@ -102,12 +104,16 @@ def print_data(data_type):
         print(f"{i + 1}: {data_type[i]}") 
 
 def choose_category(category_list):
-    choice = int(input("Please choose a category by inputting the number associated with it: "))
-    if choice > len(category_list) or choice <= 0:
+    choice = input("Please choose a category by inputting the number associated with it: ")
+    if choice.isalpha() or int(choice) > len(category_list) or int(choice) <= 0:
         print(f"Invalid choice. Please enter a number between 1 and {len(category_list)}.")
         choose_category(category_list)
     else:
-        print("You have chosen: " + category_list[choice - 1])
-        return category_list[choice - 1]
+        print("You have chosen: " + category_list[int(choice) - 1])
+        choice_correct = input("Is this correct? Y/N: ")
+        if yes_no(choice_correct):
+            return category_list[int(choice) - 1]
+        else:
+            choose_category(category_list)
 
 welcome()

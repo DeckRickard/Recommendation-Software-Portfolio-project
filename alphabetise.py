@@ -1,19 +1,37 @@
-# Creates a alphabetised dictionary of data based on a certain category. This will be used to make the search more efficient
+import string
+
+alphabet = list(string.ascii_uppercase)
+
+class HashMap:
+  def __init__(self, array_size):
+    self.array_size = array_size
+    self.array = [[] for item in range(array_size)]
+
+  def hash(self, key):
+    hash_value = alphabet.index(key)
+    return hash_value
+
+  def assign(self, key, value):
+    array_index = self.hash(key)
+    current_array_value = self.array[array_index]
+
+    if value in current_array_value:
+      return
+
+    self.array[array_index].append(value)
+
+  def retrieve(self, key):
+      array_index = self.hash(key)
+      return self.array[array_index]
+
 def alphabetise(category, dictionary):
-    alphabetised_dict = {}
-    # This function checks the values associated with a dictionary and adds them one by one (if a list) to the alphabetised dictionary.
-    for key, value_dict in dictionary.items():
-        if isinstance(value_dict[category], tuple):
-            for item in list(value_dict[category]):
-                if item[0] not in alphabetised_dict.keys():
-                    alphabetised_dict[item[0]] = [item]
-                else:
-                    if item not in alphabetised_dict[item[0]]:
-                        alphabetised_dict[item[0]].append(item)
+    alphabetised = HashMap(26)
+    for dict in list(dictionary.values()):
+        if isinstance(dict[category], tuple):
+            for item in dict[category]:
+                alphabetised.assign(item[0], item)
         else:
-            if value_dict[category][0] not in alphabetised_dict.keys():
-                 alphabetised_dict[value_dict[category][0]] = [value_dict[category]]
-            else:
-                 if value_dict[category] not in alphabetised_dict[value_dict[category][0]]:
-                    alphabetised_dict[value_dict[category][0]].append(value_dict[category])
-    return alphabetised_dict
+            alphabetised.assign(dict[category][0], dict[category])
+    
+    return alphabetised
+   
