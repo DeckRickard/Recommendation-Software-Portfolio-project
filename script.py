@@ -15,12 +15,11 @@ def welcome():
     category = choose_category(categories)
     category_alphabetised = alphabetise(category, locations)
     see_options = input("Would you like to see a list of all available options in this category? Y/N")
-    # This needs refactoring. Will throw an error if the user just presses enter on this option.
-    if see_options[0].lower() == 'y':
+    if yes_no(see_options):
         show_options(category_alphabetised)
     search_term = input("Please enter a search term to choose a category. Enter a character to see all options beginning with that letter or enter a term to find matching results: ")
-    autocomplete(search_term, category_alphabetised)
-    
+    search_key = autocomplete(search_term, category_alphabetised)
+    search(search_key, category)
 
 # This function is used to autocomplete search results and return the search term the user wants to use.
 def autocomplete(search, category):
@@ -38,15 +37,15 @@ def autocomplete(search, category):
     else:
         print_data(search_results)
     if len(search_results) > 1:
-        choice_index = int(input("Please choose a search term from the list of results by entering it's number."))
-        while choice_index > len(search_results) or choice_index < 0:
-            choice_index = int(input("Invalid choice. Please select a number matching one of the options above."))
+        choice_index = int(input("Please choose a search term from the list of results by entering it's number: "))
+        while choice_index > len(search_results) or choice_index <= 0:
+            choice_index = int(input("Invalid choice. Please select a number matching one of the options above: "))
         choice = search_results[choice_index - 1]
     else:
         choice = search_results[0]
     print(f"You have chosen: {choice}")
     choice_correct = input("Is this correct? Y/N")
-    if choice_correct[0].lower() == 'y':
+    if yes_no(choice_correct):
         return choice
     else:
         autocomplete(search, category)
@@ -56,6 +55,15 @@ def print_data(results):
     for item in results:
         print(f"- {item}.")
 
+# Helper function for handling yes/no input.
+def yes_no(input):
+    # This handles the case when the user just presses enter, which will be taken as yes.
+    if input == None:
+        return True
+    elif input[0].lower() == 'y':
+        return True
+    else:
+        return False
 
 # Prints a list of all the options available to the user in a certain category. When refactoring - add a sort to make this list alphabetic.
 def show_options(alphabetised_dict):
@@ -63,8 +71,23 @@ def show_options(alphabetised_dict):
         for item in lst:
             print(f"-{item}")
 
-def search():
-    pass
+# As the search term is already chosen by this point, the search just needs to return a list of locations that have a matching value in the chosen category.
+def search(search_term, category):
+    results = []
+    for location in list(locations.keys()):
+        # The code needs to behave differently if the category contains more than one item.
+        if type(locations[location][category]) == tuple:
+            if search_term in locations[location][category]:
+                results.append(location)
+        else:
+            if locations[location][category] == search_term:
+                results.append(location)
+    if len(results) == 0:
+        print("No results found!")
+    else:
+        print("\n")
+        for item in results:
+            print(f"- {item}\n")
 
 # This helper function creates a dictionary that contains an alphabetised dictionary for each category. This will help with autocompletion and the retrieval of results.
 def create_alphabetised_categories(categories):

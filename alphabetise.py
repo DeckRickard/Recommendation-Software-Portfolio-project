@@ -4,7 +4,6 @@ def alphabetise(category, dictionary):
     # This function checks the values associated with a dictionary and adds them one by one (if a list) to the alphabetised dictionary.
     for key, value_dict in dictionary.items():
         if isinstance(value_dict[category], tuple):
-            # This doesn't need to be repeated twice. When refactoring, add a helper function to do this bit.
             for item in list(value_dict[category]):
                 if item[0] not in alphabetised_dict.keys():
                     alphabetised_dict[item[0]] = [item]

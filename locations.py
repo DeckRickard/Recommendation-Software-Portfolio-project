@@ -40,7 +40,7 @@ locations = {
      "tags": ("Dinner", "Turkish", "Traditional")
      },
     "Hafiz Mustafa 1864":
-    {"type": "food",
+    {"type": "Food",
      "location": "Fatih",
      "tags": ("Dessert", "Turkish", "Traditional", "Ottoman")
      },
